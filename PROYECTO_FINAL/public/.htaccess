@@ -1,0 +1,17 @@
+RewriteEngine On
+
+# Ruta base de tu proyecto
+RewriteBase /PROYECTO_FINAL/public/
+
+# No reescribir si el archivo o carpeta existe
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# 🔥 Ruta: /controller/action  → Ejemplo: /producto/editar
+RewriteRule ^([^/]+)/([^/]+)/?$ index.php?controller=$1&action=$2 [L,QSA]
+
+# 🔥 Ruta: /controller  → Ejemplo: /producto
+RewriteRule ^([^/]+)/?$ index.php?controller=$1&action=index [L,QSA]
+
+# 🔥 Ruta vacía: mostrar login por defecto
+RewriteRule ^$ index.php?controller=Login&action=index [L,QSA]
